@@ -1,12 +1,8 @@
 package com.sparta.spring4.entity;
 
-import com.sparta.spring4.dto.PostSignupRequestDto;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 
 @Entity
 @Getter
