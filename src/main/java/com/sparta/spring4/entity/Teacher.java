@@ -22,9 +22,13 @@ public class Teacher {
 
     @Column(nullable = false)
     private String teachername;
+    @Column
     private Long expYear;
+    @Column(nullable = false, unique = true)
     private String phoneNo;
+    @Column
     private String company;
+    @Column
     private String introduction;
 
     @OneToMany(mappedBy = "teacher")
