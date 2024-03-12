@@ -1,23 +1,18 @@
 package com.sparta.spring4.service;
 
-import com.sparta.spring4.dto.GetLectureByCategoryResponseDto;
-import com.sparta.spring4.dto.PostCommentRequestDto;
-import com.sparta.spring4.dto.PostLectureRequestDto;
-import com.sparta.spring4.dto.PostLectureResponseDto;
+import com.sparta.spring4.dto.*;
 import com.sparta.spring4.entity.*;
 import com.sparta.spring4.repository.CommentRepository;
 import com.sparta.spring4.repository.LectureRepository;
 import com.sparta.spring4.repository.LikeRepository;
 import com.sparta.spring4.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Slf4j(topic = "LectureService")
 @Service
 @RequiredArgsConstructor
 public class LectureService {
@@ -43,6 +38,11 @@ public class LectureService {
         );
         return new PostLectureResponseDto(lectureRepository.save(newLecture));
 
+    }
+
+    // 강의 조회
+    public GetLectureResponseDto getLecture(Long lectureId) {
+        return new GetLectureResponseDto(findLecture(lectureId));
     }
 
     public List<GetLectureByCategoryResponseDto> getLectureByCategory(CategoryEnum category, SortByEnum sortBy, boolean isAsc) {
@@ -88,6 +88,12 @@ public class LectureService {
         commentRepository.delete(comment);
     }
 
+    private static void validateUser(User user, Comment comment) {
+        if (!user.getUserId().equals(comment.getUser().getUserId())) {
+            throw new SecurityException("작성자만 댓글을 수정/삭제할 수 있습니다.");
+        }
+    }
+
     public void likeLecture(Long lectureId, User user) {
         Lecture lecture = lectureRepository.findById(lectureId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 강의가 존재하지 않습니다."));
@@ -101,14 +107,6 @@ public class LectureService {
             likeRepository.save(new Like(user, lecture));
         }
     }
-
-    private static void validateUser(User user, Comment comment) {
-        if (!user.getUserId().equals(comment.getUser().getUserId())) {
-            throw new SecurityException("작성자만 댓글을 수정/삭제할 수 있습니다.");
-        }
-    }
-
-
     // 강의명 중복 확인
     private void checkDuplicateLectureName(String lectureName) {
         if (lectureRepository.existsByLectureName(lectureName)) {
