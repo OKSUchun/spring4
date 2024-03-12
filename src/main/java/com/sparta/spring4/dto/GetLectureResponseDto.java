@@ -4,6 +4,9 @@ import com.sparta.spring4.entity.CategoryEnum;
 import com.sparta.spring4.entity.Lecture;
 import lombok.Getter;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Getter
 public class GetLectureResponseDto {
     private Long lectureId;
@@ -12,6 +15,8 @@ public class GetLectureResponseDto {
     private String lectureIntroduction;
     private CategoryEnum category;
     private GetLectureInnerTeacherResponseDto teacher;
+    private List<GetLectureInnerCommentResponseDto> comments;
+    private Integer countLikes;
 
     public GetLectureResponseDto(Lecture lecture) {
         this.lectureId = lecture.getLectureId();
@@ -20,6 +25,10 @@ public class GetLectureResponseDto {
         this.lectureIntroduction = lecture.getLectureIntroduction();
         this.category = lecture.getCategory();
         this.teacher = new GetLectureInnerTeacherResponseDto(lecture.getTeacher());
+        this.comments = lecture.getComments().stream()
+                .map(GetLectureInnerCommentResponseDto::new)
+                .collect(Collectors.toList());
+        this.countLikes = lecture.getLikes().size();
     }
 }
 

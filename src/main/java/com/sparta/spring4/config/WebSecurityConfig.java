@@ -1,7 +1,9 @@
 package com.sparta.spring4.config;
 
-import com.sparta.spring4.security.*;
-import jakarta.security.auth.message.config.AuthConfig;
+import com.sparta.spring4.security.JwtAuthenticationFilter;
+import com.sparta.spring4.security.JwtAuthorizationFilter;
+import com.sparta.spring4.security.JwtUtil;
+import com.sparta.spring4.security.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +28,6 @@ public class WebSecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
     @Bean
-    // TODO: 생성자로 주입하는거 jwtUtil, authenticationConfiguration vs JwtAuthenticatonFilter 랑 어떤 차이가 있는건지 궁금
     public JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {
         JwtAuthenticationFilter filter = new JwtAuthenticationFilter(jwtUtil);
         filter.setAuthenticationManager(authenticationManager(authenticationConfiguration));

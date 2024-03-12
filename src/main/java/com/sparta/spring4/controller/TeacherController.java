@@ -31,5 +31,5 @@ public class TeacherController {
         return new ResponseEntity<>(savedTeacher, HttpStatus.CREATED);
     }
 
-    //
+
 }

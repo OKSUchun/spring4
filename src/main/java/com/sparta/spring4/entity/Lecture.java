@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -33,6 +35,13 @@ public class Lecture extends Timestamped{
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
+
+    @OneToMany(mappedBy = "lecture")
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "lecture")
+    private List<Like> likes;
+
 
     public Lecture(String lectureName, Long price, String lectureIntroduction, CategoryEnum category, Teacher teacher) {
         this.lectureName = lectureName;
