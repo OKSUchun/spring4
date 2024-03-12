@@ -1,7 +1,6 @@
 package com.sparta.spring4.entity;
 
 import com.sparta.spring4.dto.PostTeacherRequestDto;
-import com.sparta.spring4.dto.PutTeacherRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "TEACHERS")
+@Table(name = "teachers")
 @NoArgsConstructor
 public class Teacher {
     @Id
@@ -40,12 +39,5 @@ public class Teacher {
         this.phoneNo = postTeacherRequestDto.getPhoneNo();
         this.company = postTeacherRequestDto.getCompany();
         this.introduction = postTeacherRequestDto.getIntroduction();
-    }
-
-    public void update(PutTeacherRequestDto putTeacherRequestDto) {
-        this.expYear = putTeacherRequestDto.getExpYear();
-        this.phoneNo = putTeacherRequestDto.getPhoneNo();
-        this.company = putTeacherRequestDto.getCompany();
-        this.introduction = putTeacherRequestDto.getIntroduction();
     }
 }

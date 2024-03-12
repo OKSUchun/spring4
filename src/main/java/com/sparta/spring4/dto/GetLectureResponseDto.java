@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 
 @Getter
 public class GetLectureResponseDto {
-    private Long lectureId;
-    private String lectureName;
-    private Long price;
-    private String lectureIntroduction;
-    private CategoryEnum category;
-    private GetLectureInnerTeacherResponseDto teacher;
-    private List<GetLectureInnerCommentResponseDto> comments;
-    private Integer countLikes;
+    private final Long lectureId;
+    private final String lectureName;
+    private final Long price;
+    private final String lectureIntroduction;
+    private final CategoryEnum category;
+    private final GetLectureInnerTeacherResponseDto teacher;
+    private final List<GetLectureInnerCommentResponseDto> comments;
+    private final Integer countLikes;
 
     public GetLectureResponseDto(Lecture lecture) {
         this.lectureId = lecture.getLectureId();

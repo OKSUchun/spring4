@@ -26,13 +26,6 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Comment(Long commentId, String content, Lecture lecture, User user) {
-        this.commentId = commentId;
-        this.content = content;
-        this.lecture = lecture;
-        this.user = user;
-    }
-
     public Comment(PostCommentRequestDto postCommentRequestDto, Lecture lecture, User user) {
         this.content = postCommentRequestDto.getContent();
         this.lecture = lecture;

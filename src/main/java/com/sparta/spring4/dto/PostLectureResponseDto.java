@@ -6,12 +6,12 @@ import lombok.Getter;
 
 @Getter
 public class PostLectureResponseDto {
-    private Long lectureId;
-    private String lectureName;
-    private Long price;
-    private String lectureIntroduction;
-    private CategoryEnum category;
-    private PostLectureInnerTeacherResponseDto teacher;
+    private final Long lectureId;
+    private final String lectureName;
+    private final Long price;
+    private final String lectureIntroduction;
+    private final CategoryEnum category;
+    private final PostLectureInnerTeacherResponseDto teacher;
     public PostLectureResponseDto(Lecture lecture) {
         this.lectureId = lecture.getLectureId();
         this.lectureName = lecture.getLectureName();

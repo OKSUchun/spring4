@@ -1,6 +1,5 @@
 package com.sparta.spring4.entity;
 
-import com.sparta.spring4.dto.PutLectureRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "LECTURES")
+@Table(name = "lectures")
 @NoArgsConstructor
 public class Lecture extends Timestamped{
 
@@ -49,12 +48,6 @@ public class Lecture extends Timestamped{
         this.lectureIntroduction = lectureIntroduction;
         this.category = category;
         this.teacher = teacher;
-    }
-    public void update(PutLectureRequestDto putLectureRequestDto) {
-        this.lectureName = putLectureRequestDto.getLectureName();
-        this.price = putLectureRequestDto.getPrice();
-        this.lectureIntroduction = putLectureRequestDto.getLectureIntroduction();
-        this.category = putLectureRequestDto.getCategoryEnum();
     }
 
 }
