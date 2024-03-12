@@ -1,7 +1,6 @@
 package com.sparta.spring4.dto;
 
 import com.sparta.spring4.entity.UserRoleEnum;
-import com.sparta.spring4.validation.ValidEnum;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -25,7 +24,6 @@ public class PostSignupRequestDto {
 
     private String address;
 
-    @ValidEnum(enumClass = UserRoleEnum.class, message = "해당 권한은 존재하지 않습니다.")
     private UserRoleEnum role;
 
 }
